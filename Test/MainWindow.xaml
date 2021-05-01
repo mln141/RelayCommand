@@ -1,0 +1,33 @@
+﻿<Window x:Class="Test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Non generic">
+            <StackPanel Orientation="Vertical">
+                <Button Margin="5" Command="{Binding Path=CmdNoArgNoCheck}" Content="No arg, no check"/>
+                <Button Margin="5" Command="{Binding Path=CmdArgNoCheck}" Content="Arg, no check" CommandParameter="arg1"/>
+                <Button Margin="5" Command="{Binding Path=CmdArgCheck}" Content="Arg, check"  CommandParameter="arg2"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Generic">
+            <StackPanel Orientation="Vertical">
+                <Button Margin="5" Command="{Binding Path=CmdGenNoArgNoCheck}" Content="No arg, no check"/>
+                <Button Margin="5" Command="{Binding Path=CmdGenArgNoCheck}" Content="Arg, no check" CommandParameter="g_arg1"/>
+                <Button Margin="5" Command="{Binding Path=CmdGenArgCheck}" Content="Arg, check"  CommandParameter="g_arg2"/>
+            </StackPanel>
+        </GroupBox>
+        <CheckBox Grid.Column="0" Grid.Row="1" IsChecked="{Binding AllowCommand}"/>
+    </Grid>
+</Window>
