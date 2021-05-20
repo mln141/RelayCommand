@@ -71,11 +71,7 @@ namespace RelayCommand
         /// <summary>
         ///     Occurs when changes occur that affect whether or not the command should execute.
         /// </summary>
-        public event EventHandler CanExecuteChanged
-        {
-            add => CommandManager.RequerySuggested += value;
-            remove => CommandManager.RequerySuggested -= value;
-        }
+        public event EventHandler CanExecuteChanged;
 
         /// <summary>
         ///     Defines the method to be called when the command is invoked.
@@ -87,6 +83,14 @@ namespace RelayCommand
         public void Execute(object parameter)
         {
             _execute((T) parameter);
+        }
+        /// <summary>
+        /// Method to invoke CanExecuteChanged
+        /// </summary>
+        public void RaiseCanExecuteChanged()
+        {
+            var handler = CanExecuteChanged;
+            handler?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion
